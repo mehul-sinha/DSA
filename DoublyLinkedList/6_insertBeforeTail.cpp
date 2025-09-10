@@ -44,14 +44,33 @@ void traverseDLL(Node* head){
     cout << endl;
 }
 
-Node* removeHead(Node* head){
-    if(head == nullptr) return head;
+Node* insertBeforeHead(Node* head, int val){
+    if(head==nullptr) return new Node(val);
 
-    Node* prev = head;
-    head = head->next;
-    prev->next = nullptr;
-    head->back = nullptr;
-    delete prev;
+    Node* newHead = new Node(val);
+    newHead->next = head;
+    head->back = newHead;
+    return newHead;
+}
+
+Node* insertBeforeTail(Node* head, int val){
+    if(head==nullptr) return new Node(val);
+    if(head->next == nullptr){ // only one element, same as inserting before head
+        return insertBeforeHead(head, val);
+    }
+
+    Node* temp = head;
+    while(temp->next != nullptr){
+        temp= temp->next;
+    }
+
+    Node* newNode = new Node(val);
+    Node* prev = temp->back;
+    prev->next = newNode;
+    newNode->back = prev;
+    newNode->next = temp;
+    temp->back = newNode;
+    
     return head;
 }
 
@@ -60,7 +79,7 @@ int main(){
 
     Node* head = convertTODLL(arr);
 
-    head = removeHead(head);
+    head = insertBeforeTail(head, 8);
 
     traverseDLL(head);
 
