@@ -34,6 +34,7 @@ void traverseLL(Node* head){
     cout << endl;
 }
 
+//T.C O(n)
 Node* reverseIterative(Node* head){
     if(head == nullptr || head->next == nullptr) return head;
 
@@ -51,6 +52,8 @@ Node* reverseIterative(Node* head){
     return prev;
 }
 
+//T.C O(n)
+//S.C O(n) --> recursive stack space
 Node* reverseRecursive(Node* head){
     if(head == nullptr || head->next==nullptr) return head; // base case
 
