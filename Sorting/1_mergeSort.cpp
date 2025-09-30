@@ -28,7 +28,7 @@ void merge(vector<int> &v, int low, int mid, int high){
 
 void mergeSort(vector<int> &v, int low, int high){
     //base case -- array of size 1
-    if(low >= high) return;
+    if(low == high) return;
 
     // dividing array by calculating mid
     int mid = (low+high)/2;
